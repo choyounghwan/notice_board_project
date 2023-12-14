@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글 상세 조회</title>
+    <link rel="stylesheet" href="/detail.css?after">
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+</head>
+<body>
+<table>
+    <tr>
+        <th class="items">제목</th>
+        <td th:text="${board.boardTitle}"></td>
+    </tr>
+    <tr>
+        <th class="items">작성자</th>
+        <td th:text="${board.boardWriter}"></td>
+    </tr>
+    <tr>
+        <th class="items">작성시간</th>
+        <td th:text="${board.boardCreatedTime}"></td>
+    </tr>
+    <tr>
+        <th class="items">조회</th>
+        <td th:text="${board.boardHits}"></td>
+    </tr>
+    <tr>
+        <th class="items">내용</th>
+        <td th:text="${board.boardContents}"></td>
+    </tr>
+<!--    <tr th:if="${board.fileAttached == 1}">-->
+<!--        <th>image</th>-->
+<!--        <td><img th:src="@{|/upload/${board.storedFileName}|}" alt=""></td>-->
+<!--    </tr>-->
+</table>
+<div class="buttons">
+    <button class="listBtn" onclick="listReq()">목록</button>
+    <button class="updateBtn" onclick="updateReq()">수정</button>
+    <button class="deleteBtn" onclick="deleteReq()">삭제</button>
+</div>
+</body>
+<script>
+    const listReq = () => {
+        location.href = "/board/";
+    }
+    const updateReq = () => {
+        const id = [[${board.id}]];
+        location.href = "/board/update/" + id;
+    }
+    const deleteReq = () => {
+        const id = [[${board.id}]];
+        location.href = "/board/delete/" + id;
+    }
+</script>
+</html>

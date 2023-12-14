@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>글작성</title>
+    <link rel="stylesheet" href="/save.css?after">
 </head>
 <body>
     <form action="/board/save" method="post">
-        writer: <input type="text" name="boardWriter"> <br>
-        password: <input type="text" name="boardPassword"> <br>
-        title: <input type="text" name="boardTitle"> <br>
-        contents: <textarea name="boardContents" cols="30" rows="10"></textarea> <br>
-        <input type="submit" value="저장">
+        작성자 <input type="text" name="boardWriter" class="boardWriter"> <br>
+        비밀번호 <input type="text" name="boardPassword" class="boardPassword"> <br>
+        제목 <input type="text" name="boardTitle" class="boardTitle"> <br>
+        내용 <textarea name="boardContents" class="boardContents" cols="30" rows="10"></textarea> <br>
+        <input type="submit" value="저장" class="submit" location.href = "/">
     </form>
 </body>
 </html>

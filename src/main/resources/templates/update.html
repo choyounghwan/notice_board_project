@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>글수정</title>
+  <link rel="stylesheet" href="/update.css?after">
+</head>
+<body>
+<form action="/board/update" method="post" name="updateForm">
+  <input type="hidden" name="id" th:value="${boardUpdate.id}">
+  작성자 <input type="text" name="boardWriter" class="boardWriter" th:value="${boardUpdate.boardWriter}" readonly> <br>
+  비밀번호 <input type="text" name="boardPassword" class="boardPassword" id="boardPassword"> <br>
+  제목 <input type="text" name="boardTitle" class="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
+  내용 <textarea name="boardContents" class="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}"></textarea> <br>
+  <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
+  <input type="button" value="저장" class="submit" onclick="boardUpdate()">
+</form>
+<script th:inline="javascript">
+  const boardUpdate = () => {
+    const pass = [[${boardUpdate.boardPassword}]];
+    const inputPass = document.getElementById("boardPassword").value;
+    if (pass == inputPass) {
+      document.updateForm.submit();
+    } else {
+      alert("비밀번호가 일치하지 않습니다!");
+    }
+  }
+</script>
+</body>
+</html>

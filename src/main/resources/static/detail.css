@@ -1,0 +1,81 @@
+body {
+  padding:1.5em;
+  background: #f5f5f5;
+}
+
+table {
+    font-size: .9em;
+    width: 50%;
+    height: 70%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+}
+
+.buttons {
+        width: 22%;
+        margin: auto;
+        position: absolute;
+        top: 82%;
+        left: 62%;
+}
+
+.listBtn {
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    background-color: #7892c2;
+    border-radius: 30px;
+    border: 1px solid #4e6096;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 6px 15px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #283966;
+}
+
+.updateBtn {
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    background-color: #7892c2;
+    border-radius: 30px;
+    border: 1px solid #4e6096;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 6px 15px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #283966;
+}
+
+.deleteBtn {
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    background-color: #7892c2;
+    border-radius: 30px;
+    border: 1px solid #4e6096;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 6px 15px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #283966;
+}
+
+.items {
+    width: 14%;
+}

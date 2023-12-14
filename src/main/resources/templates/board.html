@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>board</title>
+    <title>게시판</title>
+    <link rel="stylesheet" href="/board.css?after">
 </head>
 <body>
-    <button onclick="saveReq()">글작성</button>
+    <a href="/board/save" class="goSaveBtn">글작성</a>
     <table>
         <tr>
             <th>   </th>
@@ -23,9 +24,4 @@
         </tr>
     </table>
 </body>
-<script>
-    const saveReq = () => {
-        location.href = "/board/save";
-    }
-</script>
 </html>
