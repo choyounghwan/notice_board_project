@@ -23,5 +23,17 @@
             <td th:text="${board.boardHits}"></td>
         </tr>
     </table>
+    <div class="paging">
+        <a th:href="@{/board/(page=1)}" class="first"><<</a>
+        <a th:href="${boardList.first} ? '#' : @{/board/(page=${boardList.number})}" class="arrow-left"><</a>
+        <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+        <span th:if="${page == boardList.number + 1}" th:text="${page}" class="num" id="currentPage"></span>
+        <span th:unless="${page == boardList.number + 1}">
+           <a th:href="@{/board/(page=${page})}" th:text="${page}" class="num"></a>
+        </span>
+    </span>
+        <a th:href="${boardList.last} ? '#' : @{/board/(page=${boardList.number + 2})}" class="arrow-right">></a>
+        <a th:href="@{/board/(page=${boardList.totalPages})}" class="last">>></a>
+    </div>
 </body>
 </html>

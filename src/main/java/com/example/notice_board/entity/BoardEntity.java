@@ -1,6 +1,7 @@
 package com.example.notice_board.entity;
 
 import com.example.notice_board.dto.BoardDTO;
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,13 +19,15 @@ public class BoardEntity extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
+    @NotNull
     private String boardWriter;
 
     @Column
     private String boardPassword;
 
     @Column
+    @NotNull
     private String boardTitle;
 
     @Column(length = 500)

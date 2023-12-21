@@ -3,6 +3,7 @@ package com.example.notice_board.controller;
 import com.example.notice_board.dto.BoardDTO;
 import com.example.notice_board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,15 @@ public class BoardController {
     //조회
     @GetMapping("/")
     public String board(@PageableDefault(page = 1) Pageable pageable, Model model) {
-        pageable.getPageNumber();
-        List<BoardDTO> boardDTOList = boardService.findAll();
-        model.addAttribute("boardList", boardDTOList);
+//        pageable.getPageNumber();
+        Page<BoardDTO> boardList = boardService.paging(pageable);
+        int blockLimit = 5;
+        int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; // 1 4 7 10 ~~
+        int endPage = ((startPage + blockLimit - 1) < boardList.getTotalPages()) ? startPage + blockLimit - 1 : boardList.getTotalPages();
+//        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         return "board";
     }
 

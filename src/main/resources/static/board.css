@@ -56,6 +56,76 @@ a {
     float: right;
 }
 
+.paging {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 633px;
+}
+
+.num {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: #96a0ad;
+    line-height: 1.5;
+
+    margin-left: 3px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+}
+
+.num:hover {
+    background-color: #2e9cdf;
+    color: #ffffff;
+}
+
+.num.active, .num:active {
+    background-color: #8eccf1;
+    cursor: pointer;
+}
+
+#currentPage {
+    background-color: #2e9cdf;
+    color: #ffffff;
+}
+
+.first {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: #96a0ad;
+    line-height: 1.5;
+}
+
+.last {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: #96a0ad;
+    line-height: 1.5;
+}
+
+.arrow-left {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: #96a0ad;
+    line-height: 1.5;
+}
+
+.arrow-right {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: #96a0ad;
+    line-height: 1.5;
+}
+
  @media all and (max-width: 768px) {
 
   table, thead, tbody, th, td, tr {

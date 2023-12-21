@@ -2,6 +2,7 @@ package com.example.notice_board.dto;
 
 import com.example.notice_board.entity.BoardEntity;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +19,19 @@ public class BoardDTO {
     private String boardContents;
     private int boardHits;
     private LocalDateTime boardCreatedTime;
+
+    private MultipartFile boardFile;
+    private String originalFileName;
+    private String storedFileName;
+    private int fileAttached;
+
+    public BoardDTO(Long id, String boardWriter, String boardTitle, int boardHits, LocalDateTime boardCreatedTime) {
+        this.id = id;
+        this.boardWriter = boardWriter;
+        this.boardTitle = boardTitle;
+        this.boardHits = boardHits;
+        this.boardCreatedTime = boardCreatedTime;
+    }
 
     public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
         BoardDTO boardDTO = new BoardDTO();

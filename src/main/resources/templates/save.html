@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="/save.css?after">
 </head>
 <body>
-    <form action="/board/save" method="post">
-        작성자 <input type="text" name="boardWriter" class="boardWriter"> <br>
+    <form action="/board/save" method="post" enctype="multipart/form-data">
+        작성자 <input type="text" name="boardWriter" class="boardWriter" required> <br>
         비밀번호 <input type="text" name="boardPassword" class="boardPassword"> <br>
-        제목 <input type="text" name="boardTitle" class="boardTitle"> <br>
+        제목 <input type="text" name="boardTitle" class="boardTitle" required> <br>
         내용 <textarea name="boardContents" class="boardContents" cols="30" rows="10"></textarea> <br>
+        <input type="file" name="boardFile" class="boardFile"> <br>
         <input type="submit" value="저장" class="submit" location.href = "/">
     </form>
 </body>
