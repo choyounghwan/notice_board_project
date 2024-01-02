@@ -29,10 +29,10 @@
         <th class="items">내용</th>
         <td th:text="${board.boardContents}"></td>
     </tr>
-<!--    <tr th:if="${board.fileAttached == 1}">-->
-<!--        <th>image</th>-->
-<!--        <td><img th:src="@{|/upload/${board.storedFileName}|}" alt=""></td>-->
-<!--    </tr>-->
+    <tr th:if="${board.fileAttached == 1}">
+        <th class="items">이미지</th>
+        <td><img th:src="@{|/upload/${board.storedFileName}|}" class="images" alt=""></td>
+    </tr>
 </table>
 <div class="buttons">
     <button class="listBtn" onclick="listReq()">목록</button>

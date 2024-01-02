@@ -9,6 +9,8 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,6 +38,12 @@ public class BoardEntity extends BaseEntity{
     @Column
     private int boardHits;
 
+    @Column
+    private int fileAttached;
+
+    @OneToMany(mappedBy = "boardEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<BoardFileEntity> boardFileEntityList = new ArrayList<>();
+
     public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
         BoardEntity boardEntity = new BoardEntity();
 
@@ -44,6 +52,7 @@ public class BoardEntity extends BaseEntity{
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(0);
+        boardEntity.setFileAttached(0);
 
         return boardEntity;
     }
@@ -57,6 +66,19 @@ public class BoardEntity extends BaseEntity{
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
         boardEntity.setBoardHits(boardDTO.getBoardHits());
+
+        return boardEntity;
+    }
+
+    public static BoardEntity toSaveFileEntity(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPassword(boardDTO.getBoardPassword());
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(0);
+        boardEntity.setFileAttached(1);
 
         return boardEntity;
     }
