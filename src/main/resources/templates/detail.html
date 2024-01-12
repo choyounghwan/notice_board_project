@@ -31,7 +31,9 @@
     </tr>
     <tr th:if="${board.fileAttached == 1}">
         <th class="items">이미지</th>
-        <td><img th:src="@{|/upload/${board.storedFileName}|}" class="images" alt=""></td>
+        <td th:each="fileName: ${board.storedFileName}" class="imageBox">
+            <img th:src="@{|/upload/${fileName}|}" class="images" alt="">
+        </td>
     </tr>
 </table>
 <div class="buttons">

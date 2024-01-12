@@ -81,5 +81,11 @@ table {
 }
 
 .images {
-    width: 33%;
+    width: 60%;
+    margin: auto;
+    display: block;
+}
+
+.imageBox {
+    width: 43%;
 }

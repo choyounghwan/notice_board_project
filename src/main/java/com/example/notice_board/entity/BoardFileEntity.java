@@ -15,20 +15,24 @@ public class BoardFileEntity extends BaseEntity {
     private long id;
 
     @Column
-    private String originalFilename;
+    private String originalFileName;
 
     @Column
-    private String storedFilename;
+    private String storedFileName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
 
-    public static BoardFileEntity toBoardFileEntity(BoardEntity boardEntity, String originalFilename, String storedFilename) {
+    @Column
+    private Long secondId;
+
+    public static BoardFileEntity toBoardFileEntity(BoardEntity boardEntity, String originalFileName, String storedFileName) {
         BoardFileEntity boardFileEntity = new BoardFileEntity();
-        boardFileEntity.setOriginalFilename(originalFilename);
-        boardFileEntity.setStoredFilename(storedFilename);
+        boardFileEntity.setOriginalFileName(originalFileName);
+        boardFileEntity.setStoredFileName(storedFileName);
         boardFileEntity.setBoardEntity(boardEntity);
+        boardFileEntity.setSecondId(boardEntity.getId());
         return boardFileEntity;
     }
 }

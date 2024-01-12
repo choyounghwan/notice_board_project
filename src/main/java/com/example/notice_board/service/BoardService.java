@@ -27,22 +27,23 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardFileRepository boardFileRepository;
     public void save(BoardDTO boardDTO) throws IOException {
-        if(boardDTO.getBoardFile().isEmpty()) {
+        if (boardDTO.getBoardFile().get(0).getOriginalFilename().length() == 0) {
             BoardEntity boardEntity = BoardEntity.toSaveEntity(boardDTO);
             boardRepository.save(boardEntity);
         } else {
-            MultipartFile boardFile = boardDTO.getBoardFile();
-            String originalFilename = boardFile.getOriginalFilename();
-            String storedFilename = System.currentTimeMillis() + "_" + originalFilename;
-            String savePath = "C:/springboot_img/" + storedFilename;
-            boardFile.transferTo(new File(savePath));
-
             BoardEntity boardEntity = BoardEntity.toSaveFileEntity(boardDTO);
             Long savedId = boardRepository.save(boardEntity).getId();
             BoardEntity board = boardRepository.findById(savedId).get();
 
-            BoardFileEntity boardFileEntity = BoardFileEntity.toBoardFileEntity(board, originalFilename, storedFilename);
-            boardFileRepository.save(boardFileEntity);
+            for (MultipartFile boardFile: boardDTO.getBoardFile()) {
+                String originalFilename = boardFile.getOriginalFilename();
+                String storedFilename = System.currentTimeMillis() + "_" + originalFilename;
+                String savePath = "C:/springboot_img/" + storedFilename;
+                boardFile.transferTo(new File(savePath));
+
+                BoardFileEntity boardFileEntity = BoardFileEntity.toBoardFileEntity(board, originalFilename, storedFilename);
+                boardFileRepository.save(boardFileEntity);
+            }
         }
     }
 
@@ -72,10 +73,28 @@ public class BoardService {
         }
     }
 
-    public BoardDTO update(BoardDTO boardDTO) {
-        BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO);
-        boardRepository.save(boardEntity);
-        return findById(boardDTO.getId());
+    @Transactional
+    public BoardDTO update(BoardDTO boardDTO) throws IOException {
+        if (boardDTO.getBoardFile().get(0).getOriginalFilename().length() == 0) {
+            BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO);
+            boardRepository.save(boardEntity);
+            return findById(boardDTO.getId());
+        } else {
+            boardFileRepository.deleteBySecondId(boardDTO.getId());
+            BoardEntity boardEntity = BoardEntity.toUpdateFileEntity(boardDTO);
+            boardRepository.save(boardEntity);
+            for (MultipartFile boardFile: boardDTO.getBoardFile()) {
+                String originalFilename = boardFile.getOriginalFilename();
+                String storedFilename = System.currentTimeMillis() + "_" + originalFilename;
+                String savePath = "C:/springboot_img/" + storedFilename;
+                boardFile.transferTo(new File(savePath));
+
+                BoardFileEntity boardFileEntity = BoardFileEntity.toBoardFileEntity(boardEntity, originalFilename, storedFilename);
+                boardFileRepository.save(boardFileEntity);
+                System.out.println(boardFileEntity.getBoardEntity().getId());
+            }
+            return  findById(boardDTO.getId());
+        }
     }
 
     public void delete(Long id) {

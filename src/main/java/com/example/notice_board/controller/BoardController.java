@@ -63,10 +63,10 @@ public class BoardController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) throws IOException{
         BoardDTO board = boardService.update(boardDTO);
         model.addAttribute("board", board);
-        return "detail";
+        return "redirect:/board/" + boardDTO.getId();
     }
 
     //삭제
