@@ -9,6 +9,20 @@
 </head>
 <body>
 <table>
+    <tr th:if="${board.fileAttached == 1}">
+        <th class="items">이미지</th>
+        <td>
+            <div class="image-gallery">
+                <div th:each="fileName: ${board.storedFileName}" class="image-box">
+                    <img th:src="@{|/upload/${fileName}|}" class="images" alt="">
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th class="items">내용</th>
+        <td th:text="${board.boardContents}"></td>
+    </tr>
     <tr>
         <th class="items">제목</th>
         <td th:text="${board.boardTitle}"></td>
@@ -24,16 +38,6 @@
     <tr>
         <th class="items">조회</th>
         <td th:text="${board.boardHits}"></td>
-    </tr>
-    <tr>
-        <th class="items">내용</th>
-        <td th:text="${board.boardContents}"></td>
-    </tr>
-    <tr th:if="${board.fileAttached == 1}">
-        <th class="items">이미지</th>
-        <td th:each="fileName: ${board.storedFileName}" class="imageBox">
-            <img th:src="@{|/upload/${fileName}|}" class="images" alt="">
-        </td>
     </tr>
 </table>
 <div class="buttons">
@@ -54,5 +58,29 @@
         const id = [[${board.id}]];
         location.href = "/board/delete/" + id;
     }
+
+        // 이미지 갤러리에 슬라이드쇼 효과 추가
+    $(document).ready(function () {
+        var slideIndex = 0;
+
+        function showSlides() {
+            var i;
+            var slides = $(".image-box");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // 이미지 전환 간격 (2초)
+        }
+
+        showSlides(); // 슬라이드쇼 시작
+    });
 </script>
 </html>

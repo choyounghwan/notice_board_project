@@ -24,7 +24,7 @@ public class BoardController {
     public String board(@PageableDefault(page = 1) Pageable pageable, Model model) {
         Page<BoardDTO> boardList = boardService.paging(pageable);
         int blockLimit = 5;
-        int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; // 1 4 7 10 ~~
+        int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1;
         int endPage = ((startPage + blockLimit - 1) < boardList.getTotalPages()) ? startPage + blockLimit - 1 : boardList.getTotalPages();
 
         model.addAttribute("boardList", boardList);

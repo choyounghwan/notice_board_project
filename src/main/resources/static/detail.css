@@ -80,12 +80,19 @@ table {
     width: 14%;
 }
 
-.images {
-    width: 60%;
-    margin: auto;
-    display: block;
+.image-gallery {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
 }
 
-.imageBox {
-    width: 43%;
+.image-box {
+    margin-right: 10px;
+}
+
+.images {
+    max-width: 100px; /* 이미지의 최대 너비 조절 */
+    max-height: 100px; /* 이미지의 최대 높이 조절 */
+    display: block;
+    margin: auto;
 }
